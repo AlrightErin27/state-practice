@@ -1,9 +1,7 @@
 import { useState } from "react";
 
-function RandomCard() {
+function RandomCard(props) {
   const [cardStatus, setCardStatus] = useState("🂠");
-
-  //cardsArr[Math.floor(Math.random() * cardsArr.length)]);
 
   function handleCardStatus() {
     const cardsArr = [
@@ -19,9 +17,19 @@ function RandomCard() {
       "🧸",
       "🧦",
       "🔔",
+      "☂️",
+      "💍",
+      "🦩",
+      "🍄",
+      "🍩",
+      "⚽️",
     ];
     let randomCard = cardsArr[Math.floor(Math.random() * cardsArr.length)];
     setCardStatus((cardStatus) => randomCard);
+  }
+
+  function handleReset() {
+    setCardStatus((cardStatus) => "");
   }
   ///////////////////////////////////////////////////////////////////////////////
   return (
@@ -29,8 +37,11 @@ function RandomCard() {
       <div className="RandomCard">
         <h1 id="image">{cardStatus}</h1>
       </div>
-      <button id="button" onClick={handleCardStatus}>
-        Play
+      <button class="button" onClick={handleCardStatus}>
+        {props.buttonTxt}
+      </button>
+      <button class="button" onClick={handleReset}>
+        Reset
       </button>
     </>
   );
